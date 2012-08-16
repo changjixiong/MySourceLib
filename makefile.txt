@@ -1,4 +1,4 @@
-all : 
+all : qsort.exe 
 
 %.exe : %.cpp
 	cl /Fe$(%.exe) $<
