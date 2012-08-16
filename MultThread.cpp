@@ -20,3 +20,35 @@ void ThreadFunc(LPVOID lpParam)
 	CoUninitialize();
 }
 
+
+
+void CSATMQDlg::OnButtonstop() 
+{
+	// TODO: Add your control notification handler code here
+	//KillTimer(1);
+	g_bRun=false;
+	DWORD nExitCode;
+	while(1)
+	{
+		if (handleAlarmSend!=INVALID_HANDLE_VALUE)
+		{
+			GetExitCodeThread(handleAlarmSend,&nExitCode);
+			if (nExitCode==STILL_ACTIVE)
+			{
+				continue;
+			}
+		}
+		
+		if (handleAlarmGenerate!=INVALID_HANDLE_VALUE)
+		{
+			GetExitCodeThread(handleAlarmGenerate,&nExitCode);		
+			if (nExitCode==STILL_ACTIVE)
+			{
+				continue;
+			}
+		}		
+
+		break;
+	}
+}
+
