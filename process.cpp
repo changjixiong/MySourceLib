@@ -396,3 +396,4 @@ string CRegisterDlg::MakeRegisterCMD()
 	return strCmd;
 }
 
+HANDLE	CStationInfo::hMutexWriteLog=CreateMutex(NULL,FALSE,NULL);

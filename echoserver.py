@@ -4,7 +4,9 @@ import time
 ser=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 ser.bind(('',9000))
 ser.listen(5)
+
 connection,address=ser.accept()
+print 'get connected from',address
 
 State="Connected"
 
@@ -16,3 +18,4 @@ while True:
         connection.send(buf)
     except:
         connection,address=ser.accept()
+		print 'get connected from',address

@@ -1,0 +1,6 @@
+all : 
+
+%.exe : %.cpp
+	cl /Fe$(%.exe) $<
+
+
