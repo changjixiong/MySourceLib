@@ -13,9 +13,9 @@ State="Connected"
 while True:    
     try:
         time.sleep(0.1)
-        buf=connection.recv(512);
-	print buf 
+        buf=connection.recv(512)
+        print buf 
         connection.send(buf)
     except:
         connection,address=ser.accept()
-		print 'get connected from',address
+        print 'get connected from',address
