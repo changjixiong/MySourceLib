@@ -18,4 +18,6 @@ HDC    DC=GetDC(hwnd);
 			SRCCOPY);
 		
 		SelectObject(MemDC,bitOld);
-		DeleteObject(bitOld);
+		DeleteObject(bitGround);
+		DelectDC(MemDC);
+

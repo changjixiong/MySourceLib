@@ -27,13 +27,16 @@ void CGraphicTestDlg::TransparentBlt2(int nX0 , int nY0)
 	BitBlt(pClientDC->m_hDC,nX0,nY0,22,42,hdcManDealed,0,0,SRCPAINT);
 	
 	SelectObject(hdcMan,bitOldMan);
-	DeleteObject(bitOldMan);
+	DeleteObject(bitMan);
+	DeleteDC(hdcMan);
 
-	SelectObject(hdcManDealed,hdcManDealed);
-	DeleteObject(hdcManDealed);
+	SelectObject(hdcManDealed,bitOldManDealed);
+	DeleteObject(bitManDealed);
+	DeleteDC(hdcManDealed);
 	
 	SelectObject(hdcMask,bitOldMask);
-	DeleteObject(hdcMask);	
+	DeleteObject(bitMask);
+	DeleteDC(hdcMask);
 	
 }
 
