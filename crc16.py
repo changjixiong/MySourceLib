@@ -69,3 +69,11 @@ def CRC16(puchMsg):
         uchCRCHi = uchCRCLo ^ auchCRCHi[uIndex]
         uchCRCLo = auchCRCLo[uIndex]
     return (uchCRCHi << 8 | uchCRCLo)
+
+def AddCRC16(strMsg):
+    crcCode = CRC16(strMsg)
+    strMsg+=chr(crcCode>>8)
+    strMsg+=chr(crcCode&0xff)
+
+    return strMsg
+    

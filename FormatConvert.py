@@ -25,3 +25,8 @@ def FloatFrom4Hexs(Hexs,Len=2):
     return ('%%0.%df' % Len )%struct.unpack('>f',binascii.unhexlify(Hexs))[0]
 
 
+def HexStyleFromString(strSrc):
+    return ' '.join(strSrc[i:i+2] for i in xrange(0, len(strSrc),2))
+
+def StringFromHexStyle(strSrc, space=1):
+    return ''.join(strSrc[i:i+2] for i in xrange(0, len(strSrc),2+space))
