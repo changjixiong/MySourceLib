@@ -19,14 +19,16 @@ def HexChrFromNum(Num):
     return binascii.b2a_hex(struct.pack('>h',Num))
 
 #'3fa51eb8'
-def FloatFrom4Hexs(Hexs,Len=2):
+def FloatFromHexChr(Hexs):
     if len(Hexs)!=8 or Hexs==0 or Hexs==None:
         return ''    
-    return ('%%0.%df' % Len )%struct.unpack('>f',binascii.unhexlify(Hexs))[0]
-
+    return struct.unpack('>f',binascii.unhexlify(Hexs))[0]
 
 def HexStyleFromString(strSrc):
     return ' '.join(strSrc[i:i+2] for i in xrange(0, len(strSrc),2))
 
 def StringFromHexStyle(strSrc, space=1):
     return ''.join(strSrc[i:i+2] for i in xrange(0, len(strSrc),2+space))
+
+def IntFromStream(data):
+    return struct.unpack('>h', data)[0]
