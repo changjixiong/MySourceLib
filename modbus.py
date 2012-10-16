@@ -1,11 +1,16 @@
 from crc16 import CRC16
 import binascii
 
-def ModbusRTUCMD(deviceID, codeNo, fromReg, regNum):
+def ModbusRTUCMD(deviceID, codeNo, fromReg, *args):
+    registerOffSet = 1
     strCmd = ''.join(map(chr,
                              (deviceID, codeNo,
-                              fromReg>>8, fromReg&0xff,
-                              regNum>>8, regNum&0xff)))
+                              (fromReg - registerOffSet)>>8,
+                              (fromReg - registerOffSet)&0xff,
+                              args[0]>>8, args[0]&0xff)))
+
+    if len(args)>1:
+        strCmd+=''.join(map(chr,[args[0]*2,] + list(args[1:])))
 
     crc = (CRC16(strCmd))
     strCmd+=chr(crc>>8)
@@ -15,8 +20,7 @@ def ModbusRTUCMD(deviceID, codeNo, fromReg, regNum):
     #print ' '.join(strCmdAscii[i:i+2] for i in range(0, len(strCmdAscii), 2))
 
     return strCmd
-    
-
+ 
 def ModbusTCPCMD(deviceID,cmdType,FromReg,*args):
     if len(args)==0:
         print 'len is 0'
