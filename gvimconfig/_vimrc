@@ -4,6 +4,7 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 
 syntax enable
+syntax on
 set smarttab
 set tabstop=4
 set expandtab "将tab改为空格
@@ -12,7 +13,12 @@ set ruler "右下角显示光标的坐标
 set shiftwidth=4 "自动缩进4个空格
 set lbr "断行在空白处，不断字
 
+" 在搜索的时候忽略大小写
+set ignorecase
 
+
+au GUIEnter * simalt ~x "maximum the initial window
+colorscheme desert
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -38,5 +44,6 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+map <F2> :NERDTree
 map <F5> :!"D:\Python26\python.exe" %
 map <F8> :!"gmake -f Makefile.txt"
